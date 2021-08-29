@@ -1,0 +1,27 @@
+<h1>Show Recipe</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, TastyRecipesWeb.Html.RecipeLive.FormComponent,
+    id: @recipe.id,
+    title: @page_title,
+    action: @live_action,
+    recipe: @recipe,
+    return_to: Routes.html_recipe_show_path(@socket, :show, @recipe) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @recipe.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @recipe.description %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.html_recipe_show_path(@socket, :edit, @recipe), class: "button" %></span>
+<span><%= live_redirect "Back", to: Routes.html_recipe_index_path(@socket, :index) %></span>

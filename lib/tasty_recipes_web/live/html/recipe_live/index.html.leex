@@ -1,0 +1,40 @@
+<h1>Listing Recipes</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, TastyRecipesWeb.Html.RecipeLive.FormComponent,
+    id: @recipe.id || :new,
+    title: @page_title,
+    action: @live_action,
+    recipe: @recipe,
+    current_user: @current_user,
+    return_to: Routes.html_recipe_index_path(@socket, :index) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>User</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="recipes">
+    <%= for recipe <- @recipes do %>
+      <tr id="recipe-<%= recipe.id %>">
+        <td><%= recipe.name %></td>
+        <td><%= recipe.description %></td>
+        <td><%= recipe.owner %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.html_recipe_show_path(@socket, :show, recipe) %></span>
+          <span><%= live_patch "Edit", to: Routes.html_recipe_index_path(@socket, :edit, recipe) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: recipe.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Recipe", to: Routes.html_recipe_index_path(@socket, :new) %></span>
