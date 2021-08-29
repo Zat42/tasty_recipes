@@ -30,3 +30,12 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+
+config :tasty_recipes, TastyRecipes.Guardian,
+  secret_key: "QEijcHVZw9X8lgP/9TJROU+MVyvUMLv/mUY2+Kx7XwXfXeVACQsX4vTfaiLapTLv",
+  issuer: "tasty_recipes",
+  ttl: {7, :days}
+
+config :tasty_recipes, TastyRecipesWeb.ApiAuthPipeline,
+  error_handler: TastyRecipesWeb.ApiAuthErrorHandler,
+  module: TastyRecipes.Guardian

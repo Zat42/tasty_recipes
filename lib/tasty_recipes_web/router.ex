@@ -13,10 +13,6 @@ defmodule TastyRecipesWeb.Router do
     plug :fetch_current_user
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", TastyRecipesWeb do
     pipe_through :browser
 
@@ -86,4 +82,19 @@ defmodule TastyRecipesWeb.Router do
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm
   end
+
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
+  pipeline :api_authenticated do
+    plug TastyRecipesWeb.ApiAuthPipeline
+  end
+
+  scope "/api", TastyRecipesWeb.Api, as: :api do
+    pipe_through :api
+
+    post "/sign_in", SessionController, :create
+  end
+
 end
