@@ -89,12 +89,19 @@ defmodule TastyRecipesWeb.Router do
 
   pipeline :api_authenticated do
     plug TastyRecipesWeb.ApiAuthPipeline
+    plug :fetch_current_user_api
   end
 
   scope "/api", TastyRecipesWeb.Api, as: :api do
     pipe_through :api
 
     post "/sign_in", SessionController, :create
+  end
+
+  scope "/api", TastyRecipesWeb.Api, as: :api do
+    pipe_through :api_authenticated
+
+    resources "/recipes", RecipeController
   end
 
 end

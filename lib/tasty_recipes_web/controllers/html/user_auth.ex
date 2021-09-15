@@ -96,6 +96,14 @@ defmodule TastyRecipesWeb.Html.UserAuth do
     assign(conn, :current_user, user)
   end
 
+  @doc """
+  Fetch user info linked to JWT .
+  """
+  def fetch_current_user_api(conn, _opts) do
+    user = conn.private.guardian_default_resource
+    assign(conn, :current_user, user)
+  end
+
   defp ensure_user_token(conn) do
     if user_token = get_session(conn, :user_token) do
       {user_token, conn}
