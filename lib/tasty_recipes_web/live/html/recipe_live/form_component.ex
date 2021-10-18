@@ -36,6 +36,9 @@ defmodule TastyRecipesWeb.Html.RecipeLive.FormComponent do
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        require Logger
+        Logger.debug(changeset.errors)
+
         {:noreply, assign(socket, :changeset, changeset)}
     end
   end
@@ -49,6 +52,9 @@ defmodule TastyRecipesWeb.Html.RecipeLive.FormComponent do
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        require Logger
+        Logger.debug(changeset)
+
         {:noreply, assign(socket, changeset: changeset)}
     end
   end

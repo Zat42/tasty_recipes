@@ -25,3 +25,4 @@
 
 <span><%= live_patch "Edit", to: Routes.html_recipe_show_path(@socket, :edit, @recipe), class: "button" %></span>
 <span><%= live_redirect "Back", to: Routes.html_recipe_index_path(@socket, :index) %></span>
+<span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: @recipe.id, data: [confirm: "Are you sure?"] %></span>

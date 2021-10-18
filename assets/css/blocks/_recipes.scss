@@ -1,0 +1,17 @@
+#recipes {
+    padding-top: 50px;
+}
+
+#new-recipe {
+    background-color: $primary;
+    
+    .desc {
+        line-height: 35px;
+        color: white;
+
+        a {
+            color: white;
+            font-weight: 600;
+        }
+    }
+}

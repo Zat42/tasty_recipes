@@ -1,0 +1,36 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+
+// Variables
+@import "_colors.scss";
+@import "_variables.scss";
+
+// Required
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+// Contain useful classes to handle Phoenix logics
+@import "./phoenix/_style.scss";
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@import "./_blocks";
+
+body {
+    font: Inter;
+}
+
+.btn-outline-primary {
+    &:hover {
+        color: white !important;
+    }
+}
+
+.btn-primary {
+    color: white !important;
+}

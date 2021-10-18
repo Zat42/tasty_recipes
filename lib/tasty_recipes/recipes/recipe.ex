@@ -17,5 +17,23 @@ defmodule TastyRecipes.Recipes.Recipe do
     recipe
     |> cast(attrs, [:name, :description, :owner])
     |> validate_required([:name, :description])
+    |> validate_length(:name, min: 2, max: 32)
+    |> validate_length(:description, min: 100, max: 1024)
+    |> validate_name()
+  end
+
+  def validate_name(changeset) do
+    name = get_field(changeset, :name)
+
+    case name do
+      nil -> changeset
+      name ->
+        clean_name = String.downcase(name)
+        if clean_name =~ "pizza" and clean_name =~ "pineapple" do
+          add_error(changeset, :name, "how dare you...")
+        else
+          changeset
+        end
+      end
   end
 end
