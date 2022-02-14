@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure your database
 config :tasty_recipes, TastyRecipes.Repo,

@@ -14,9 +14,10 @@ defmodule TastyRecipes.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: TastyRecipes.PubSub},
       # Start the Endpoint (http/https)
-      TastyRecipesWeb.Endpoint
+      TastyRecipesWeb.Endpoint,
       # Start a worker by calling: TastyRecipes.Worker.start_link(arg)
       # {TastyRecipes.Worker, arg}
+      TastyRecipes.BotConsumer
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

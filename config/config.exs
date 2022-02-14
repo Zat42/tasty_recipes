@@ -5,7 +5,7 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
 config :tasty_recipes,
   ecto_repos: [TastyRecipes.Repo],
@@ -39,3 +39,6 @@ config :tasty_recipes, TastyRecipes.Guardian,
 config :tasty_recipes, TastyRecipesWeb.ApiAuthPipeline,
   error_handler: TastyRecipesWeb.ApiAuthErrorHandler,
   module: TastyRecipes.Guardian
+
+config :nostrum,
+  token: "ODg3NzQxOTIxMTA2MjAyNjc2.YUIkFw.Ao0Im5olpyOM0asBbkuiuGCcVhI" # The token of your bot as a string

@@ -49,7 +49,10 @@ defmodule TastyRecipes.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:nostrum, "~> 0.4"},
+      {:inflex, "~> 2.0.0"},
+      {:cowlib, "~> 2.11", hex: :remedy_cowlib, override: true}
     ]
   end
 

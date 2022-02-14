@@ -7,6 +7,7 @@ defmodule TastyRecipes.Recipes do
   alias TastyRecipes.Repo
 
   alias TastyRecipes.Recipes.Recipe
+  alias TastyRecipes.Accounts.User
 
   @doc """
   Returns the list of recipes.

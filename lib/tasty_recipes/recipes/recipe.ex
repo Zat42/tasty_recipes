@@ -1,13 +1,20 @@
 defmodule TastyRecipes.Recipes.Recipe do
   use Ecto.Schema
+
   import Ecto.Changeset
+  import Ecto.Query, warn: false
+
+  alias TastyRecipes.Accounts.User
+  alias TastyRecipes.Recipes
+  alias TastyRecipes.Recipes.Recipe
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "recipes" do
     field :description, :string
     field :name, :string
-    field :owner, :binary_id
+
+    belongs_to :user, User, foreign_key: :owner
 
     timestamps()
   end
@@ -36,4 +43,16 @@ defmodule TastyRecipes.Recipes.Recipe do
         end
       end
   end
+
+  def with_owner_email(query \\ Recipe, email) do
+    query
+    |> join(:left, [r], u in User, on: r.owner == u.id)
+    |> where([r, u], u.email == ^email)
+  end
+
+  def name_contains(query \\ Recipe, search) do
+    query
+    |> where([r], ilike(r.name, ^"%#{search}%"))
+  end
+
 end
